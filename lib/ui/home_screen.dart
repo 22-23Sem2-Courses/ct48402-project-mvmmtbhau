@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import './screen.dart';
 
@@ -29,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     final plantsManager = PlantsManager();
-    final cartManager = CartManager();
+    final cartManager = context.watch<CartManager>();
 
     final plants = category == 'All'
         ? plantsManager.plants
@@ -333,7 +334,10 @@ class _HomeScreenState extends State<HomeScreen> {
               right: 10,
               top: 10,
               child: OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  final cart = context.read<CartManager>();
+                  cart.addItem(plant);
+                },
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   backgroundColor: MaterialStateProperty.all(Colors.green),

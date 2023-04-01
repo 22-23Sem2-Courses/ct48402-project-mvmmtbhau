@@ -12,13 +12,12 @@ class CartScreen extends StatefulWidget {
   State<CartScreen> createState() => _CartScreenState();
 }
 
-final cart = CartManager();
-
 class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
-    final plants = cart.cartItems;
+    final cart = context.watch<CartManager>();
 
+    final plants = cart.cartItems;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
@@ -87,6 +86,7 @@ class CheckOutCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cart = context.watch<CartManager>();
     return Container(
       padding: const EdgeInsets.symmetric(
         vertical: 15,
@@ -140,7 +140,9 @@ class CheckOutCard extends StatelessWidget {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      context.read<CartManager>().clear();
+                    },
                     child: const Text(
                       'Check Out',
                       style: TextStyle(

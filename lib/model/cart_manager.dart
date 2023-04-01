@@ -2,18 +2,34 @@ import 'package:flutter/foundation.dart';
 
 import './cart_model.dart';
 import './plant_manager.dart';
+import './plant_model.dart';
 
 final plantManager = PlantsManager();
 final plants = plantManager.plants;
 
 class CartManager extends ChangeNotifier {
-  final List<CartItem> _items = [
-    CartItem(plant: plants[0], quantity: 1),
-    CartItem(plant: plants[1], quantity: 3),
-  ];
+  List<CartItem> _items = [];
+
+  void addItem(Plant plant) {
+    if (_items.isEmpty) {
+      _items.add(
+        CartItem(plant: plant, quantity: 1),
+      );
+    } else {
+      _items.add(
+        CartItem(plant: plant, quantity: 1),
+      );
+    }
+    notifyListeners();
+  }
 
   void removeItem(int index) {
     _items.removeAt(index);
+    notifyListeners();
+  }
+
+  void clear() {
+    _items = [];
     notifyListeners();
   }
 
