@@ -11,15 +11,9 @@ class CartManager extends ChangeNotifier {
   List<CartItem> _items = [];
 
   void addItem(Plant plant) {
-    if (_items.isEmpty) {
-      _items.add(
-        CartItem(plant: plant, quantity: 1),
-      );
-    } else {
-      _items.add(
-        CartItem(plant: plant, quantity: 1),
-      );
-    }
+    _items.add(
+      CartItem(plant: plant, quantity: 1),
+    );
     notifyListeners();
   }
 

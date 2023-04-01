@@ -253,7 +253,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             right: 20,
                             bottom: 10,
                             child: OutlinedButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                context
+                                    .read<CartManager>()
+                                    .addItem(popularPlants[index]);
+                              },
                               style: ButtonStyle(
                                 foregroundColor:
                                     MaterialStateProperty.all(Colors.white),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myproject_app/model/plant_model.dart';
+import 'package:provider/provider.dart';
 
 import './screen.dart';
 
@@ -12,7 +13,7 @@ class FavoriteScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final plantManager = PlantsManager();
-    final cartManager = CartManager();
+    final cartManager = context.watch<CartManager>();
 
     final favorites = plantManager.favoritePlant;
 
@@ -119,7 +120,9 @@ class ItemCard extends StatelessWidget {
                 ],
               ),
               OutlinedButton(
-                onPressed: () {},
+                onPressed: () {
+                  context.read<CartManager>().addItem(favorite);
+                },
                 style: ButtonStyle(
                   foregroundColor: MaterialStateProperty.all(Colors.white),
                   backgroundColor: MaterialStateProperty.all(Colors.green),

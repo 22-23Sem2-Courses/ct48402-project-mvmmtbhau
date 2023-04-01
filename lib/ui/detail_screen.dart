@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../model/plant_model.dart';
 import '../model/cart_manager.dart';
@@ -23,7 +24,7 @@ class DetailScreen extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.green,
         actions: [
-          CartIcon(data: CartManager().plantCount),
+          CartIcon(data: context.watch<CartManager>().plantCount),
         ],
       ),
       body: SafeArea(
