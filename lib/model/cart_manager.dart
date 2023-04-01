@@ -8,9 +8,14 @@ final plants = plantManager.plants;
 
 class CartManager extends ChangeNotifier {
   final List<CartItem> _items = [
-    CartItem(id: 'c1', plant: plants[0], quantity: 1),
-    CartItem(id: 'c2', plant: plants[1], quantity: 3),
+    CartItem(plant: plants[0], quantity: 1),
+    CartItem(plant: plants[1], quantity: 3),
   ];
+
+  void removeItem(int index) {
+    _items.removeAt(index);
+    notifyListeners();
+  }
 
   int get plantCount {
     return _items.length;

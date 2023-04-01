@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 
 import './ui/screen.dart';
 import './model/plant_manager.dart';
+import './model/cart_manager.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,6 +19,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(
           create: (ctx) => PlantsManager(),
+        ),
+        ChangeNotifierProvider(
+          create: (ctx) => CartManager(),
         )
       ],
       child: MaterialApp(

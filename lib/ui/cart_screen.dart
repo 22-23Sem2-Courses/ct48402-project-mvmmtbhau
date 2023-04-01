@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myproject_app/model/cart_model.dart';
+import 'package:provider/provider.dart';
 
 import '../model/cart_manager.dart';
 
@@ -47,7 +48,7 @@ class _CartScreenState extends State<CartScreen> {
           itemBuilder: (context, index) => Padding(
             padding: const EdgeInsets.symmetric(vertical: 10),
             child: Dismissible(
-              key: Key(UniqueKey().toString()),
+              key: Key(plants[index].plant.id),
               direction: DismissDirection.endToStart,
               background: Container(
                 alignment: Alignment.centerRight,
@@ -67,9 +68,7 @@ class _CartScreenState extends State<CartScreen> {
                 ),
               ),
               onDismissed: (direction) {
-                setState(() {
-                  plants.removeAt(index);
-                });
+                context.read<CartManager>().removeItem(index);
               },
               child: CartItemCard(plant: plants[index]),
             ),
