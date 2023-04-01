@@ -81,19 +81,25 @@ class ItemCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Container(
-          height: 220,
-          padding: const EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            border: Border.all(
-              color: Colors.green,
-              width: 2,
-            ),
-            borderRadius: BorderRadius.circular(20),
-            image: DecorationImage(
-              image: AssetImage(favorite.imagePath),
-              fit: BoxFit.cover,
+        GestureDetector(
+          onTap: () {
+            Navigator.of(context)
+                .pushNamed(DetailScreen.routeName, arguments: favorite.id);
+          },
+          child: Container(
+            height: 220,
+            padding: const EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              border: Border.all(
+                color: Colors.green,
+                width: 2,
+              ),
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                image: AssetImage(favorite.imagePath),
+                fit: BoxFit.cover,
+              ),
             ),
           ),
         ),
