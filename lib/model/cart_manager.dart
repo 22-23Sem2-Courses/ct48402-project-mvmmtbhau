@@ -11,9 +11,16 @@ class CartManager extends ChangeNotifier {
   List<CartItem> _items = [];
 
   void addItem(Plant plant) {
-    _items.add(
-      CartItem(plant: plant, quantity: 1),
-    );
+    final index = _items.indexWhere((item) => item.plant.id == plant.id);
+
+    if (index == -1) {
+      _items.add(
+        CartItem(plant: plant, quantity: 1),
+      );
+    } else {
+      _items[index].quantity = _items[index].quantity + 1;
+    }
+
     notifyListeners();
   }
 

@@ -22,7 +22,7 @@ class _BottomNavbarState extends State<BottomNavbar> {
         controller: pageController,
         onPageChanged: (value) => setState(() => selectIndex = value),
         itemBuilder: (item, index) {
-          return Container(child: child[index]);
+          return Container(child: child[selectIndex]);
         },
       ),
       bottomNavigationBar: BottomAppBar(
